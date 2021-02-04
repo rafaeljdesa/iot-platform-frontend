@@ -1,0 +1,24 @@
+<mat-drawer-container class="example-container">
+    <mat-drawer class="side-nav" #drawer mode="side" opened>       
+        <mat-nav-list class="menu-list">
+            <a mat-list-item><mat-icon>home</mat-icon>Home</a>
+            <a mat-list-item><mat-icon>sensors</mat-icon>Dispositivos</a>
+            <a mat-list-item><mat-icon>location_on</mat-icon>Localização</a>
+            <a mat-list-item><mat-icon>traffic</mat-icon>Eventos</a>
+            <a mat-list-item><mat-icon>design_services</mat-icon>Simulação</a>            
+         </mat-nav-list>
+    </mat-drawer>
+    <mat-drawer-content>
+        <mat-toolbar color="primary">
+            <button mat-icon-button aria-label="Menu icon"
+                (click)="drawer.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <span>IOT Platform</span>
+            <span class="example-spacer"></span>            
+            <button mat-icon-button aria-label="Logout icon">
+                <mat-icon>logout</mat-icon>
+            </button>
+        </mat-toolbar>
+    </mat-drawer-content>
+</mat-drawer-container>
