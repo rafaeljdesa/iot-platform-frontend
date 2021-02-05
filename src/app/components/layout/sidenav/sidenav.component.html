@@ -1,0 +1,14 @@
+<mat-drawer-container class="app-container">
+    <mat-drawer #drawer class="side-nav" mode="side" opened>       
+        <mat-nav-list class="menu-list">
+            <a mat-list-item><mat-icon>home</mat-icon>Home</a>
+            <a mat-list-item><mat-icon>sensors</mat-icon>Dispositivos</a>
+            <a mat-list-item><mat-icon>location_on</mat-icon>Localização</a>
+            <a mat-list-item><mat-icon>traffic</mat-icon>Eventos</a>
+            <a mat-list-item><mat-icon>design_services</mat-icon>Simulação</a>            
+         </mat-nav-list>
+    </mat-drawer>
+    <mat-drawer-content>       
+        <ng-content></ng-content>
+    </mat-drawer-content>
+</mat-drawer-container>

@@ -11,15 +11,21 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { MatDividerModule } from '@angular/material/divider';
+import { HeaderComponent } from './components/layout/header/header.component';
+import { SidenavComponent } from './components/layout/sidenav/sidenav.component';
+import { SidenavService } from './services/sidenav.service';
+import { AppRoutingModule } from './app-routing.module';
 
 /* **************************** */
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    SidenavComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     MatToolbarModule,
@@ -28,7 +34,9 @@ import { MatDividerModule } from '@angular/material/divider';
     MatSidenavModule,
     MatListModule
   ],
-  providers: [],
+  providers: [
+    SidenavService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
