@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dispositivos',
@@ -17,11 +18,15 @@ export class DispositivosComponent implements OnInit {
     { id: '7', macAddress: '00:19:B9:FB:E2:58', latitude: '-15.859010', longitude: '-35.373160', model: 'SDF', type: 'TEMPERATURE' },
   ];
 
-  displayedColumns: string[] = ['id', 'macAddress', 'latitude', 'longitude', 'model', 'type'];  
+  displayedColumns: string[] = ['id', 'macAddress', 'latitude', 'longitude', 'model', 'type', 'edit'];
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  edit(id) {
+    this.router.navigate([`/dispositivos/${id}`]);
   }
 
 }
