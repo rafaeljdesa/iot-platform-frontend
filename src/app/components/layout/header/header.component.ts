@@ -1,5 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router, RoutesRecognized } from '@angular/router';
 import { SidenavService } from 'src/app/services/sidenav.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +10,19 @@ import { SidenavService } from 'src/app/services/sidenav.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private sidenavService: SidenavService) { }
+  title: string;
+
+  constructor(
+    private sidenavService: SidenavService, 
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+    this.router.events.pipe(
+      filter((e: RoutesRecognized) => e instanceof RoutesRecognized)
+    ).subscribe((e: RoutesRecognized) => {
+      this.title = e.state.root.firstChild.data.title;
+    });
   }
 
   toggleMenu() {
