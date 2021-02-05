@@ -15,6 +15,7 @@ import { HeaderComponent } from './components/layout/header/header.component';
 import { SidenavComponent } from './components/layout/sidenav/sidenav.component';
 import { SidenavService } from './services/sidenav.service';
 import { AppRoutingModule } from './app-routing.module';
+import { LocalizacaoModule } from './components/localizacao/localizacao.module';
 
 /* **************************** */
 
@@ -32,7 +33,8 @@ import { AppRoutingModule } from './app-routing.module';
     MatIconModule,
     MatButtonModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    LocalizacaoModule
   ],
   providers: [
     SidenavService
