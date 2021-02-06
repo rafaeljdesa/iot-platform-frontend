@@ -20,6 +20,12 @@ export class DispositivosComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'macAddress', 'latitude', 'longitude', 'model', 'type', 'edit'];
 
+  pagination = {
+    qtdElements: 100,
+    size: 10,
+    options: [5, 10, 25, 100]
+  };
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {
@@ -27,6 +33,10 @@ export class DispositivosComponent implements OnInit {
 
   edit(id) {
     this.router.navigate([`/dispositivos/${id}`]);
+  }
+
+  changePage(e) {
+    console.log(e);
   }
 
 }
