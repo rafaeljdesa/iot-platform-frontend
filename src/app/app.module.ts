@@ -7,6 +7,8 @@ import { SidenavComponent } from './components/layout/sidenav/sidenav.component'
 import { SidenavService } from './services/sidenav.service';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared/shared.module';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { DispositivosService } from './services/dispositivos.service';
 
 @NgModule({
   declarations: [
@@ -18,10 +20,12 @@ import { SharedModule } from './shared/shared/shared.module';
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule
   ],
   providers: [
-    SidenavService
+    SidenavService,
+    DispositivosService
   ],
   bootstrap: [AppComponent]
 })

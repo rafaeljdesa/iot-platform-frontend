@@ -41,7 +41,7 @@
         </mat-grid-tile>
     </mat-grid-list>
     <div class="buttons">
-        <button mat-stroked-button color="warn">EXCLUIR</button>
-        <button mat-stroked-button color="basic" class="ml">SALVAR</button>
+        <button mat-stroked-button color="warn" *ngIf="device.id" (click)="deleteDevice()">EXCLUIR</button>
+        <button mat-stroked-button color="basic" class="ml" (click)="saveDevice()">SALVAR</button>
     </div>   
 </mat-card>
