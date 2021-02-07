@@ -1,1 +1,21 @@
-<p>localizacao works!</p>
+<agm-map [latitude]="centerLat" [longitude]="centerLng" [zoom]="zoom">
+    <agm-marker *ngFor="let device of devices" 
+        [latitude]="device.latitude" 
+        [longitude]="device.longitude">
+        <agm-info-window>
+            <p><b>Id:</b> {{ device.id }}</p>
+            <p><b>Mac Address:</b> {{ device.macAddress }}</p>            
+            <p><b>Localização:</b> {{ device.latitude + ',' + device.longitude }}</p>            
+            <p><b>Modelo:</b> {{ device.model }}</p>        
+            <p><b>Tipo:</b> {{ device.type }}</p>            
+        </agm-info-window>
+    </agm-marker>   
+    <agm-circle *ngFor="let network of networks" 
+        [latitude]="network.latitude" 
+        [longitude]="network.longitude" 
+        [radius]="network.radiusInMeters"
+        [fillColor]="'#B2B2B2'"
+        [circleDraggable]="false"
+        [editable]="false">
+    </agm-circle> 
+</agm-map>
