@@ -50,6 +50,10 @@
     </mat-paginator>
 </div>
 
+<p class="message-without-devices" *ngIf="!selectedDevices || selectedDevices?.length === 0">
+    Nenhum dispositivo adicionado
+</p>
+
 <div *ngIf="selectedDevices?.length > 0" class="button-container">
     <button mat-stroked-button color="warn" (click)="stopSimulateAll()">PARAR TODOS</button>
 </div>
