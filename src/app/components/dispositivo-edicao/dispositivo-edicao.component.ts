@@ -10,8 +10,6 @@ import { DispositivosService } from 'src/app/services/dispositivos.service';
 })
 export class DispositivoEdicaoComponent implements OnInit {
 
-  // device: Device = { id: '1', macAddress: '00:19:B9:FB:E2:58', latitude: '-22.859010', longitude: '-43.373160', model: 'ASD', type: 'TEMPERATURE' };
-
   device: Device = {};
 
   types: IotTypeEnum[] = [

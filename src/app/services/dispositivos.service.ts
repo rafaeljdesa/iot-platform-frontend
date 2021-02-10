@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { Device } from '../model/device.model';
+import { Device, Devices } from '../model/device.model';
 import { Page } from '../model/page.model';
 
 @Injectable({
@@ -38,6 +38,12 @@ export class DispositivosService {
     );
   }
 
+  getAll(): Observable<Devices> {
+    return this.http.get(`${this.URL}/all`).pipe(
+      map((res: Devices) => res)
+    );
+  }
+
   getById(id: string): Observable<Device> {
     return this.http.get(`${this.URL}/${id}`);
   }
@@ -50,7 +56,14 @@ export class DispositivosService {
     return this.http.put(this.URL, device);
   }
 
-  deleteById(id: string) {
+  deleteById(id: string): Observable<any> {
     return this.http.delete(`${this.URL}/${id}`);
   }
+
+  private mapCoordenatesToNumber(device: Device): Device {
+    device.latitude = Number(device.latitude);
+    device.longitude = Number(device.longitude);
+    return device;
+  }
+
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Device } from 'src/app/model/device.model';
+import { Device, Devices } from 'src/app/model/device.model';
+import { DispositivosService } from 'src/app/services/dispositivos.service';
 
 @Component({
   selector: 'app-localizacao',
@@ -12,21 +13,31 @@ export class LocalizacaoComponent implements OnInit {
   centerLng;
   zoom = 15;
 
-  devices: any[] = [
-    { id: '1', macAddress: '00:19:B9:FB:E2:58', latitude: -22.859010, longitude: -43.373160, model: 'ASD', type: 'TEMPERATURE' },
-    { id: '2', macAddress: '00:19:B9:FB:E2:58', latitude: -22.856598, longitude: -43.374319, model: 'HFG', type: 'PRESENCE' },
-    { id: '3', macAddress: '00:19:B9:FB:E2:58', latitude: -22.858822, longitude: -43.374437, model: 'HFG', type: 'WATER' },
-  ];
+  devices: Devices;
 
   networks: any[] = [
     { latitude: -22.859010, longitude: -43.373160, radiusInMeters: 1000 }
-  ]
+  ];
 
-  constructor() { }
+  constructor(private dispositivosService: DispositivosService) { }
 
   ngOnInit(): void {
-    this.centerLat = this.devices[0].latitude;
-    this.centerLng = this.devices[0].longitude;
+    this.loadDevices();    
+  }
+
+  private loadDevices() {
+    this.dispositivosService.getAll()
+      .subscribe((resp: Devices) => {
+        this.devices = resp;
+        this.setCenterCoordenates();
+      });
+  }
+
+  private setCenterCoordenates() {
+    if (this.devices?.length > 0) {
+      this.centerLat = this.devices[0].latitude;
+      this.centerLng = this.devices[0].longitude;
+    }
   }
 
 }
