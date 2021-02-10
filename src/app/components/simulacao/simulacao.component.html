@@ -1,1 +1,84 @@
-<p>simulacao works!</p>
+<div class="mat-elevation-z2 mb">
+    <table mat-table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> Id </th>
+            <td mat-cell *matCellDef="let element"> {{ element.id }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="macAddress">
+            <th mat-header-cell *matHeaderCellDef> Mac Address </th>
+            <td mat-cell *matCellDef="let element"> {{ element.macAddress }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="latitude">
+            <th mat-header-cell *matHeaderCellDef> Latitude </th>
+            <td mat-cell *matCellDef="let element"> {{ element.latitude }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="longitude">
+            <th mat-header-cell *matHeaderCellDef> Longitude </th>
+            <td mat-cell *matCellDef="let element"> {{ element.longitude }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="model">
+            <th mat-header-cell *matHeaderCellDef> Modelo </th>
+            <td mat-cell *matCellDef="let element"> {{ element.model }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef> Tipo </th>
+            <td mat-cell *matCellDef="let element"> {{ element.type }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="add">
+            <th mat-header-cell *matHeaderCellDef> Adicionar </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button (click)="addToSimulation(element)">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+    <mat-paginator showFirstLastButtons (page)="changePage($event)" [length]="pagination.qtdElements"
+        [pageSize]="pagination.size" [pageSizeOptions]="pagination.options">
+    </mat-paginator>
+</div>
+
+<div *ngIf="selectedDevices?.length > 0" class="button-container">
+    <button mat-stroked-button color="warn" (click)="stopSimulateAll()">PARAR TODOS</button>
+</div>
+<mat-accordion>
+    <mat-expansion-panel *ngFor="let device of selectedDevices" hideToggle>
+        <mat-expansion-panel-header>
+            <div class="expansion-header-content">
+                <span>{{ device.id }}</span>
+                <span>{{ device.macAddress }}</span>
+                <span>{{ device.type }}</span>                
+                <mat-icon [class.device-online]="device.online"
+                    [class.device-offline]="!device.online" >
+                    {{ device.online ? 'sensors' : 'sensors_off' }}
+                </mat-icon>
+            </div>
+        </mat-expansion-panel-header>
+        <mat-form-field appearance="outline">
+            <mat-label>Intervalo (segundos)</mat-label>                
+            <mat-select [(ngModel)]="device.interval" [disabled]="device.online">
+                <mat-option *ngFor="let interval of intervals" [value]="interval">
+                  {{ interval }}
+                </mat-option>
+              </mat-select>
+        </mat-form-field>        
+        <button *ngIf="!device.online" [disabled]="!device.interval" 
+            mat-stroked-button color="basic" class="ml" (click)="startSimulate(device)">INICIAR</button>
+        <button *ngIf="device.online" [disabled]="!device.interval" 
+            mat-stroked-button color="warn" class="ml" (click)="stopSimulate(device)">PARAR</button>
+        <button *ngIf="!device.online" 
+            mat-stroked-button color="warn" class="ml-1" (click)="removeFromSimulation(device)">REMOVER</button>
+    </mat-expansion-panel>    
+</mat-accordion>

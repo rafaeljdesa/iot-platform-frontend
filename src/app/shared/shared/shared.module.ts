@@ -13,6 +13,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [],
@@ -30,7 +31,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatGridListModule,
     MatCardModule,
     MatSelectModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatExpansionModule
   ], 
   exports: [
     FormsModule,
@@ -45,7 +47,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatGridListModule,
     MatCardModule,
     MatSelectModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatExpansionModule
   ]
 })
 export class SharedModule { }

@@ -4,7 +4,9 @@ export interface Device {
     latitude?: number,
     longitude?: number,
     model?: string,
-    type?: string
+    type?: string,
+    online?: boolean,
+    interval?: number
 }
 
 export interface Devices extends Array<Device> { }

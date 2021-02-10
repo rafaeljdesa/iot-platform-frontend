@@ -1,0 +1,43 @@
+table {
+    width: 100%;
+}
+
+.mb {
+    margin-bottom: 20px;
+}
+
+.ml {
+    margin-left: 20px;
+}
+
+.ml-1 {
+    margin-left: 10px;
+}
+
+.expansion-header-content {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.device-online {
+    color: #00C853;
+    animation: fadeinout 4s infinite;
+}
+.device-offline {
+    color: red;
+}
+
+@keyframes fadeinout {
+    0%   { opacity: 1; }
+    50%  { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.button-container {
+    display: flex;
+    width: 100%; 
+    justify-content: flex-end;
+    margin-bottom: 10px;    
+}
