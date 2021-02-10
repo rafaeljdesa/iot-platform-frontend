@@ -2,10 +2,12 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import { GOOGLE_MAPS_DEV } from "src/app/app.keys";
+
 export const environment = {
   production: false,
   API_BASE_URL: 'http://localhost:8080',
-  GOOGLE_MAPS_KEY: 'AIzaSyAkI6dLsYNjc9rSO41GPDAPUi7jvy2p3hE'
+  GOOGLE_MAPS_KEY: GOOGLE_MAPS_DEV
 };
 
 /*

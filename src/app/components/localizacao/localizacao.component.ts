@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Device, Devices } from 'src/app/model/device.model';
+import { Devices } from 'src/app/model/device.model';
 import { DispositivosService } from 'src/app/services/dispositivos.service';
 
 @Component({
