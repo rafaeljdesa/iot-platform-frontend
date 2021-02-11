@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Device, Devices } from 'src/app/model/device.model';
 import { Page } from 'src/app/model/page.model';
 import { DispositivosService } from 'src/app/services/dispositivos.service';
+import { SimulacaoService } from 'src/app/services/simulacao.service';
 
 @Component({
   selector: 'app-simulacao',
@@ -26,7 +27,8 @@ export class SimulacaoComponent implements OnInit {
   intervals: number[] = [1, 3, 5, 10, 60];
 
   constructor(    
-    private dispositivosService: DispositivosService
+    private dispositivosService: DispositivosService,
+    private simulacaoService: SimulacaoService
   ) { }
 
   ngOnInit(): void {
@@ -64,10 +66,15 @@ export class SimulacaoComponent implements OnInit {
 
   startSimulate(device: Device) {
     device.online = true;
+    device.intervalEvent = setInterval(() => {
+      this.simulacaoService.sendEvent(device)
+        .subscribe();
+    }, device.interval * 1000);
   }
 
   stopSimulate(device: Device) {
     device.online = false;
+    clearInterval(device.intervalEvent);
   }
 
   stopSimulateAll() {

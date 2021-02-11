@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared/shared.module';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { DispositivosService } from './services/dispositivos.service';
+import { SimulacaoService } from './services/simulacao.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { DispositivosService } from './services/dispositivos.service';
   ],
   providers: [
     SidenavService,
-    DispositivosService
+    DispositivosService,
+    SimulacaoService
   ],
   bootstrap: [AppComponent]
 })

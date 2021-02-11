@@ -6,7 +6,8 @@ export interface Device {
     model?: string,
     type?: string,
     online?: boolean,
-    interval?: number
+    interval?: number,
+    intervalEvent?: any
 }
 
 export interface Devices extends Array<Device> { }
