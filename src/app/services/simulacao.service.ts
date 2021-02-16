@@ -10,22 +10,10 @@ export class SimulacaoService {
 
   URL = environment.API_BASE_URL + '/event-producer-service/event-producer/iot';
 
-  deviceData = {
-    TEMPERATURE: {
-      temperature: 30 // em graus Celsius
-    },
-    WATER: {
-      waterLevel: 0.1 // em metros
-    },
-    PRESSURE: {
-      pressureLevel: 1 // padrão
-    }
-  };
-
   constructor(private http: HttpClient) { }
 
   sendEvent(device: Device) {
-    const dataByDeviceType = this.deviceData[device.type] || {};
+    const dataByDeviceType = this.getDeviceData()[device.type] || {};
     const event = { 
       deviceId: device.id,
       eventData: {
@@ -33,6 +21,24 @@ export class SimulacaoService {
       }
     };
     return this.http.post(this.URL, event);
+  }
+
+  private getDeviceData() {
+    return {
+      TEMPERATURE: {
+        temperature: this.randomNumber(29, 31) // em graus Celsius
+      },
+      WATER: {
+        waterLevel: this.randomNumber(0, 0.2) // em metros
+      },
+      PRESSURE: {
+        pressureLevel: this.randomNumber(1, 1.1) // padrão
+      }
+    };
+  }
+
+  private randomNumber(min: number, max: number) {
+    return Math.random() * (max - min) + min;
   }
 
 }
